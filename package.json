@@ -1,0 +1,19 @@
+{
+  "name": "bae-nodejs",
+  "version": "1.0.0",
+  "author": "bae",
+  "description": "The first bae nodejs app!",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.2",
+    "express-xml-bodyparser": "^0.3.0",
+    "formidable": "^1.1.1",
+    "moment": "^2.18.1",
+    "multer": "^0.1.8",
+    "socket.io": "^2.0.1",
+    "xml2js": "^0.4.17"
+  }
+}

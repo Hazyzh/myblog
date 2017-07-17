@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body { font: 13px Helvetica, Arial;height: 100%;width: 100%;overflow: hidden;}
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      .content{
+          height: 500px;
+          overflow-y:auto;
+      }
+      .content li{
+          padding: 5px 10px;
+      }
+      .content li>p{
+          margin: 0px;
+      }
+      .content li>p:first-child{
+          font-size: 20px;
+          margin-left: 10px;
+      }
+      .content li>p:first-child>span{
+          color: #bfbfbf;
+          font-size: 12px;
+      }
+      .content li>p:last-child{
+          font-size: 14px;
+          color: #404040;
+          margin: 10px 50px 0px 50px;
+          border-bottom: 1px groove #fff;
+          padding-bottom: 10px;
+      }
+      .my-modal{
+          position: fixed;
+          top:0px;
+          height: 100%;
+          width: 100%;
+          background: #363738;
+      }
+      .modal-content{
+          padding: 20px 0;
+          background: #DBDBDB;
+      }
+      .my-modal h3{
+          margin-top: 200px;
+          color: #fff;
+          text-align: center;
+          font-size: 50px;
+          margin-bottom: 50px;
+      }
+      .modal-content>button{
+          margin: 30px 0 0 0;
+      }
+      .info-container{
+          position: absolute;
+          bottom: 70px;
+          text-align: center;
+          width: 100%;
+      }
+      .info-container>p{
+          position: absolute;
+          width: 100%;
+
+      }
+      .info-container .login-in{
+          font-size: 30px;
+          color: #00a2ae;
+      }
+      .info-container .login-out{
+          font-size: 30px;
+          color: #f5317f;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="row">
+        <div class="page-header col-md-8 col-md-offset-2">
+            <h1 class="text-primary">Chatroom base on socket.io <small>当前在线 <span id="numbers" class="text-warning">0</span> 人</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="jumbotron content" id="contentBox">
+                <ul class="list-unstyled" id="messages">
+                    <!-- <li>
+                        <p>name <span>2010/3/25 05:12:31</span></p>
+                        <p>content</p>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="info-container" id="infoContainer">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form action="" id="send">
+            <div class="col-md-6 col-md-offset-2">
+                <input id="m" autocomplete="off" class="form-control" />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary btn-block">Send</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="my-modal" id="myModal">
+        <div class="row">
+            <h3>Chat Room</h3>
+            <div class="col-md-offset-4 col-md-4 modal-content">
+                <input id="name" placeholder="请输入姓名"  class="form-control" />
+                <button type="button" id="getName" class="btn btn-primary btn-block">Join</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/js/socket.io.js"></script>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/chat/index.js"></script>
+  </body>
+</html>

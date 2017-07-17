@@ -1,0 +1,108 @@
+'use strict';
+
+var request = require('request');
+var token = require('./getToken.js');
+
+var menu = {
+    button: [{
+        name: 'hello',
+        type: 'click',
+        key: 'hello'
+    }]
+};
+
+var createMenu = function createMenu(req, res) {
+    var url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' + token();
+    var r = request.post(url, { form: JSON.stringify(menu) }, function (err, response, body) {
+        res.send(String(body));
+    });
+};
+
+module.exports = createMenu;
+'use strict';
+
+var request = require('request');
+var url = require('url');
+var qs = require('querystring');
+
+var appID = 'wx4aa4836d516a1ce3';
+var secret = '73b81be406ab22187ca5e78a8d129e93';
+var grant_type = 'client_credential';
+var token;
+
+var payload = { appID: appID, secret: secret, grant_type: grant_type };
+var params = qs.stringify(payload);
+var baseUrl = 'https://api.weixin.qq.com/cgi-bin/token';
+var requsetUrl = baseUrl + '?' + params;
+function getToken() {
+    request.get(requsetUrl, function (err, response, body) {
+        console.log(body);
+        if (!err) {
+            var info = JSON.parse(body);
+            token = info.access_token;
+        }
+    });
+}
+
+getToken();
+
+// 100分钟刷新一次token
+setInterval(getToken, 1000 * 60 * 100);
+
+var func = function func() {
+    return token;
+};
+
+module.exports = func;
+'use strict';
+
+var crypto = require("crypto");
+var xml2js = require('xml2js');
+var builder = new xml2js.Builder({
+    cdata: true,
+    headless: true,
+    rootName: 'xml'
+});
+
+var parser = new xml2js.Parser({
+    trim: true,
+    explicitArray: false
+});
+
+function sha1(str) {
+    var md5sum = crypto.createHash("sha1");
+    md5sum.update(str);
+    str = md5sum.digest("hex");
+    return str;
+}
+
+var token = 'hazyzh';
+var wechatGet = function wechatGet(req, res) {
+
+    if (!!req.query.echostr) {
+        var signature = req.query.signature,
+            timestamp = req.query.timestamp,
+            nonce = req.query.nonce,
+            echostr = req.query.echostr;
+
+        var str = [token, timestamp, nonce].sort().join('');
+        var resStr = sha1(str);
+
+        if (resStr == signature) {
+            res.end(echostr);
+        } else {
+            res.end('err');
+        }
+    } else {
+        var xmlstr = req.body;
+    }
+};
+// 消息
+var wechatPost = function wechatPost(req, res) {
+    var xmlstr = req.body;
+};
+
+module.exports = {
+    get: wechatGet,
+    post: wechatPost
+};
