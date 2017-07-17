@@ -95,7 +95,7 @@ app.post('/wechat', xmlparser({trim: true, explicitArray: false}), wechat.post)
 
 
 
-var server = app.listen(18080, function(){
+var server = app.listen(80, function(){
     var info = server.address()
     var host = info.address
     var port = info.port
