@@ -112,7 +112,7 @@ io.on('connection',function(socket) {
         if(addUser){
             numbers--
 
-            socket.broadcast.emit('userLeave', {userName: addUser, numbers})
+            socket.emit('userLeave', {userName: addUser, numbers})
         }
     })
 
@@ -128,6 +128,6 @@ io.on('connection',function(socket) {
         addUser = userName
 
         socket.emit('login ok', numbers)
-        socket.broadcast.emit('addUser', {userName, numbers})
+        socket.emit('addUser', {userName, numbers})
     })
 })

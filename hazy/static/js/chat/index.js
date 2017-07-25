@@ -81,10 +81,12 @@ $(function() {
 
     socket.on('addUser', function(msg) {
         $numbers.text(msg.numbers)
+        log(msg.userName, 'login')
     })
 
     socket.on('userLeave', function(msg) {
         $numbers.text(msg.numbers)
+        log(msg.userName, 'logout')
     })
 
     socket.on('login ok', function(msg) {
