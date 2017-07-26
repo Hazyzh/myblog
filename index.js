@@ -108,6 +108,12 @@ const io = require('socket.io')(server)
 io.on('connection',function(socket) {
     var addUser = false
 
+    var address = client.handshake.address
+    let urlinfo = client.request.headers.referer
+
+    var time = moment().format('YYYY/MM/DD HH:mm:ss')
+    io.emit('chat message', {userName: 'system', address + ':' + urlinfo, time})
+
     socket.on('disconnect', function() {
         if(addUser){
             numbers--
