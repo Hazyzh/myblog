@@ -5,9 +5,12 @@ var multer = require('multer')
 var upload = multer({ dest: './hazy/uploads/' })
 var moment = require('moment')
 var xmlparser = require('express-xml-bodyparser')
+var connection = require('./mysqlForServer.js')
 // wechat
 var wechat = require('./wechat/wechat.js')
 // var createMenu = require('./wechat/createMenu.js')
+var blogSocket = require('./blogChat/blogSocket.js')
+
 
 app.use(xmlparser())
 app.use(bodyParser.json()); // for parsing application/json
@@ -25,13 +28,25 @@ var allowCrossDomain = function(req, res, next) {
 };
 app.use(allowCrossDomain)
 
-app.use(express.static('hazy'));
+app.use(express.static('hazy', {
+    setHeaders: headFunction
+}))
+
+function headFunction(res, pathname) {
+    if (path.dirname(pathname) == path.join(__dirname, './hazy/b')) {
+        res.setHeader('Content-type', 'text/html; charset=utf-8')
+    }
+}
 
 
-
-
-
-
+// 获取文章目录列表
+app.get('/get_catalog/:blogId', (req, res) => {
+    let blogId = req.params.blogId
+    var sql = 'select catalog from myblog where blogId = ?'
+    connection.query(sql, [blogId], (err, results) => {
+        res.json(results[0].catalog)
+    })
+})
 
 // app.get('/createmenu', createMenu)
 
@@ -104,6 +119,8 @@ var server = app.listen(80, function(){
 })
 var numbers = 0
 const io = require('socket.io')(server)
+// 博客聊天
+blogSocket(io)
 // socket
 io.on('connection',function(socket) {
     var addUser = false
@@ -112,7 +129,7 @@ io.on('connection',function(socket) {
     let urlinfo = client.request.headers.referer
 
     var time = moment().format('YYYY/MM/DD HH:mm:ss')
-    io.emit('chat message', {userName: 'system', address + ':' + urlinfo, time})
+    io.emit('chat message', {userName: 'system', msg: address + ':' + urlinfo, time})
 
     socket.on('disconnect', function() {
         if(addUser){
