@@ -10,6 +10,7 @@ var connection = require('./mysqlForServer.js')
 var wechat = require('./wechat/wechat.js')
 // var createMenu = require('./wechat/createMenu.js')
 var blogSocket = require('./blogChat/blogSocket.js')
+var path = require('path')
 
 
 app.use(xmlparser())
@@ -110,47 +111,12 @@ app.post('/wechat', xmlparser({trim: true, explicitArray: false}), wechat.post)
 
 
 
-var server = app.listen(80, function(){
+var server = app.listen(8080, function(){
     var info = server.address()
     var host = info.address
     var port = info.port
 
     console.log('Example app listening at http://%s:%s', host, port)
 })
-var numbers = 0
-const io = require('socket.io')(server)
-// 博客聊天
-blogSocket(io)
-// socket
-io.on('connection',function(socket) {
-    var addUser = false
 
-    var address = client.handshake.address
-    let urlinfo = client.request.headers.referer
-
-    var time = moment().format('YYYY/MM/DD HH:mm:ss')
-    io.emit('chat message', {userName: 'system', msg: address + ':' + urlinfo, time})
-
-    socket.on('disconnect', function() {
-        if(addUser){
-            numbers--
-
-            socket.emit('userLeave', {userName: addUser, numbers})
-        }
-    })
-
-    socket.on('chat message', function(msg) {
-        var time = moment().format('YYYY/MM/DD HH:mm:ss')
-        io.emit('chat message', {userName: addUser, msg, time})
-    })
-
-    socket.on('login', function(userName) {
-        if(addUser) { return false }
-
-        numbers++
-        addUser = userName
-
-        socket.emit('login ok', numbers)
-        socket.emit('addUser', {userName, numbers})
-    })
-})
+blogSocket(server)

@@ -1,4 +1,5 @@
-var url = require('url'),
+var socket = require('socket.io'),
+    url = require('url'),
     axios = require('axios'),
     moment = require('moment')
 
@@ -6,13 +7,49 @@ var nameArr = ["马行空","马春花","徐铮","商宝震","何思豪","阎基"
 
 
 
-function startSocketServer(io) {
+function startSocketServer(server) {
+    // var numbers = 0
+    const io = socket(server)
+    // // 博客聊天
+    // io.on('connection',function(socket) {
+    //     var addUser = false
+    //
+    //     var address = client.handshake.address
+    //     let urlinfo = client.request.headers.referer
+    //
+    //     var time = moment().format('YYYY/MM/DD HH:mm:ss')
+    //     io.emit('chat message', {userName: 'system', msg: address + ':' + urlinfo, time})
+    //
+    //     socket.on('disconnect', function() {
+    //         if(addUser){
+    //             numbers--
+    //
+    //             socket.emit('userLeave', {userName: addUser, numbers})
+    //         }
+    //     })
+    //
+    //     socket.on('chat message', function(msg) {
+    //         var time = moment().format('YYYY/MM/DD HH:mm:ss')
+    //         io.emit('chat message', {userName: addUser, msg, time})
+    //     })
+    //
+    //     socket.on('login', function(userName) {
+    //         if(addUser) { return false }
+    //
+    //         numbers++
+    //         addUser = userName
+    //
+    //         socket.emit('login ok', numbers)
+    //         socket.emit('addUser', {userName, numbers})
+    //     })
+    // })
+    //
+
     const  nsp = io.of('/b')
-
     var roomsdata = {}
-
 // socket
     nsp.on('connection',function(client) {
+        console.log(client)
         var address = client.handshake.address
 
         let urlinfo = client.request.headers.referer,
