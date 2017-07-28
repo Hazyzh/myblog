@@ -60,7 +60,7 @@ function startSocketServer(server) {
         var key = 'e38506ecc1e237f3a242b11fef36a18e'
         var parameters = {
             key,
-            address
+            ip: address
         }
 
         axios({
