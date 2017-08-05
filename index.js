@@ -52,9 +52,9 @@ function headFunction(res, pathname) {
 // 获取文章目录列表
 app.get('/get_catalog/:blogId', (req, res) => {
     let blogId = req.params.blogId
-    var sql = 'select catalog from myblog where blogId = ?'
+    var sql = 'select catalog, readNumber from myblog where blogId = ?'
     connection.query(sql, [blogId], (err, results) => {
-        res.json(results[0].catalog)
+        res.json(results && results[0])
     })
 })
 
