@@ -49,7 +49,6 @@ function startSocketServer(server) {
     var roomsdata = {}
 // socket
     nsp.on('connection',function(client) {
-        console.log(client)
         var address = client.handshake.address
 
         let urlinfo = client.request.headers.referer,
@@ -88,14 +87,12 @@ function startSocketServer(server) {
         })
 
         client.on('say', (data) => {
-            // console.log(data, roomId)
             var time = moment().format('HH:mm:ss')
             data.time = time
             client.to(roomId).emit('say', data)
         })
 
         client.on('disconnecting', (reason) => {
-            console.log(reason)
             roomsdata[roomId] -= 1
             userName = null
 

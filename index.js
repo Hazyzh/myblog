@@ -6,13 +6,18 @@ var upload = multer({ dest: './hazy/uploads/' })
 var moment = require('moment')
 var xmlparser = require('express-xml-bodyparser')
 var connection = require('./mysqlForServer.js')
+var cookieParser = require('cookie-parser')
 // wechat
 var wechat = require('./wechat/wechat.js')
 // var createMenu = require('./wechat/createMenu.js')
-var blogSocket = require('./blogChat/blogSocket.js')
 var path = require('path')
 
+var blogSocket = require('./blog/blogSocket.js'),
+    getLoginInfo = require('./blog/loginOauth.js'),
+    blogComment = require('./blog/blogComment.js')
 
+// cookie
+app.use(cookieParser())
 app.use(xmlparser())
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -36,6 +41,10 @@ app.use(express.static('hazy', {
 function headFunction(res, pathname) {
     if (path.dirname(pathname) == path.join(__dirname, './hazy/b')) {
         res.setHeader('Content-type', 'text/html; charset=utf-8')
+
+        var blogId = pathname.match(/\d+$/)[0],
+        sql = 'UPDATE myblog SET readNumber = readNumber + 1 WHERE blogId = ?;'
+        connection.query(sql, [blogId])
     }
 }
 
@@ -109,6 +118,12 @@ app.post('/wechat', xmlparser({trim: true, explicitArray: false}), wechat.post)
 //   }
 // }))
 
+// 用户登录
+app.get('/oauth', getLoginInfo)
+// 评论系统
+app.get('/blog_comment/:blogId', blogComment.get)
+app.post('/blog_comment', blogComment.post)
+app.delete('/blog_comment', blogComment.delete)
 
 
 var server = app.listen(80, function(){
