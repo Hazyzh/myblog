@@ -126,7 +126,7 @@ app.post('/blog_comment', blogComment.post)
 app.delete('/blog_comment', blogComment.delete)
 
 
-var server = app.listen(80, function(){
+var server = app.listen(8080, function(){
     var info = server.address()
     var host = info.address
     var port = info.port
