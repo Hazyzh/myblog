@@ -49,6 +49,9 @@ function headFunction(res, pathname) {
     }
 }
 
+app.get('/blog/*',(req, res) => {
+    res.sendFile(path.join(__dirname, 'hazy', 'blog/index.html'))
+})
 
 // 获取文章目录列表
 app.get('/get_catalog/:blogId', (req, res) => {
