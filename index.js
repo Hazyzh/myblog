@@ -14,7 +14,8 @@ var path = require('path')
 
 var blogSocket = require('./blog/blogSocket.js'),
     getLoginInfo = require('./blog/loginOauth.js'),
-    blogComment = require('./blog/blogComment.js')
+    blogComment = require('./blog/blogComment.js'),
+    blogHomepage = require('./blog/homePage.js')
 
 // cookie
 app.use(cookieParser())
@@ -124,9 +125,13 @@ app.get('/oauth', getLoginInfo)
 app.get('/blog_comment/:blogId', blogComment.get)
 app.post('/blog_comment', blogComment.post)
 app.delete('/blog_comment', blogComment.delete)
+// 博客首页
+app.get('/get_lastest_blog', blogHomepage.getLastest)
+// 博客标签
+app.get('/get_tags_info', blogHomepage.getTagsinfo)
 
 
-var server = app.listen(8080, function(){
+var server = app.listen(80, function(){
     var info = server.address()
     var host = info.address
     var port = info.port

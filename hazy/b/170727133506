@@ -136,22 +136,22 @@
     <body>
         <header>
             <div class="header-content">
-                <a href="/b" class="home-logo">
+                <a href="/blog" class="home-logo">
                     <img src="/static/imgs/home.png" />
                 </a>
                 <div class="blog-info">
-                    <a href="#">主页</a>
-                    <a href="#">标签分类</a>
-                    <a href="#">个人中心</a>
+                    <a href="/blog">主页</a>
+                    <a href="/blog/tags">标签分类</a>
+                    <a href="/blog/about">个人中心</a>
                 </div>
             </div>
         </header>
         <div id="content">
             <h1>写点什么</h1>
             <span class="info-title clearleft">
-
+                
                     <span class="tags">随笔</span>
-
+                
                 <span class="time">2017年07月27日 13:35:06</span>
                 <span class="count-total" id="countNumbers"></span>
             </span>
