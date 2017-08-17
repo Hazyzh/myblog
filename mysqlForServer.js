@@ -1,34 +1,33 @@
 var mysql = require('mysql')
-var connection
+const config = {
+    host: 'rm-wz9q5gati5vm67726o.mysql.rds.aliyuncs.com',
+    user: 'root',
+    password: 'Hou19910325',
+    database: 'hazyzh',
+    port: 3306
+}
+var pool = mysql.createPool(config)
 
-function handleError () {
-    connection = mysql.createConnection({
-        host: 'rm-wz9q5gati5vm67726o.mysql.rds.aliyuncs.com',
-        user: 'root',
-        password: 'Hou19910325',
-        database: 'hazyzh',
-        port: 3306
-    });
-
-    //连接错误，2秒重试
-    connection.connect(function (err) {
-        if (err) {
-            console.log('error when connecting to db:', err);
-            setTimeout(handleError , 2000);
+var connection = {
+    query: (sql, options, callback) => {
+        if (typeof(options) == 'function') {
+            callback = options
+            options = null
         }
-    });
-
-    connection.on('error', function (err) {
-        console.log('db error', err);
-        // 如果是连接断开，自动重新连接
-        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-            handleError();
-        } else {
-            throw err;
-        }
-    });
+        pool.getConnection((err, conn) => {
+            if(err) {
+                 callback && callback(err,null,null)
+            } else {
+                conn.query(sql,options,function(err,results,fields){
+                   //释放连接
+                   conn.release();
+                   //事件驱动回调
+                   callback(err,results,fields)
+               })
+            }
+        })
+    }
 }
 
-handleError();
 
 module.exports = connection
