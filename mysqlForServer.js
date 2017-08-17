@@ -22,7 +22,7 @@ var connection = {
                    //释放连接
                    conn.release();
                    //事件驱动回调
-                   callback(err,results,fields)
+                   callback && callback(err,results,fields)
                })
             }
         })
