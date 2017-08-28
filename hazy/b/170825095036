@@ -163,8 +163,8 @@
                     <h3 id="hazyzh-h3-1">前言</h3><p><img src="http://oqqyvkd0p.bkt.clouddn.com/WechatIMG25.jpeg" alt="探索"></p>
 <p>无意间发现 <a href="https://leetcode.com/"><strong>LeetCode</strong></a> 这个网站，一下子就陷进去了，大学时候看舍友参加 <em>acm</em> 一天到晚刷题，对算法总有点特殊的情怀。本以为我永远是接触不到这个了，没想到 leetcode 却让我感觉到 <em>Accepted</em> 这个单词的特殊魅力。</p>
 <h3 id="hazyzh-h3-2">个人</h3><p>首先自己并不是为了找工作去刷题的，纯粹享受做题的过程和ac的快感。题目全部用 <code>JavaScript</code> 做的，基本上每天一题的节奏。开始总是想着怎么把答案解出来就好，经常 <em>TLE</em> ,感觉一路做下来自己慢慢会考虑复杂度，逻辑严谨性也在逐步加强，对特殊值的考虑越来越多，相比于算法能力的提升我更欣喜看到自己逻辑严谨性加强，感觉这对自己后面的道路帮助会很大。</p>
-<p>这里记录自己对一些题目的思路和想法</p>
-<h3 id="hazyzh-h3-3">题目</h3><h4 id="hazyzh-h4-1">Palindrome Number</h4><p><code>1         =&gt;   true;
+<h3 id="hazyzh-h3-3">题目</h3><p>这里记录自己对一些题目的思路和想法</p>
+<h4 id="hazyzh-h4-1">Palindrome Number</h4><p><code>1         =&gt;   true;
     21         =&gt;   false;
     303        =&gt;   true;</code></p>
 <p>数字回文，说不能用额外的空间一下子懵逼了，第一概念就是换成字符串比较，但是感觉这样子做就没有意义了。看了别人思路发现给的数字每次取 10 的余数拼起来正好是数字倒过来写。如果只取出一半，原数字也舍弃一半 正好就是回文的两个内容。有了思路就好做了判断下特殊条件，比较最后两个数字就可以了，如果是奇数位数字就减掉中间一位再比较。</p>
@@ -181,7 +181,25 @@
         <span class="hljs-built_in">return</span> <span class="hljs-built_in">num</span> == x || (x != <span class="hljs-number">0</span> &amp;&amp; Math.<span class="hljs-built_in">floor</span>(<span class="hljs-built_in">num</span> / <span class="hljs-number">10</span>) == x)
     };
 </code></pre>
+<h4 id="hazyzh-h4-2">Container With Most Water</h4><p><code>给定一个数组，想象成一个二位坐标系，数组中每一个元素 a[i] =&gt; n 就是坐标系上的一条线段[ (i,0) =&gt; (i,x) ]。找出任意两条线段与 x 轴组成的木桶，可以盛水最大的值。</code></p>
+<p>看到题目想了一下就想着两层循环去计算，果然就超时了，看了看别人的思路，开始就算出0到最后一个线段组成的木桶的面积，然后找出线段比较短的一条向中间靠拢，如果下一条线段比当前线段还短就忽略，反之就继续循环计算。想了想这样做也是合理的如果下一条线段比当前的还短那组成的面积肯定比较小。有了思路就好做了</p>
+<pre><code class="lang-javascript">
+    <span class="hljs-built_in">var</span> maxArea = function(<span class="hljs-built_in">height</span>) {
+        <span class="hljs-built_in">let</span> i = <span class="hljs-number">0</span>, l = <span class="hljs-built_in">height</span>.<span class="hljs-built_in">length</span> -<span class="hljs-number">1</span>, res = <span class="hljs-number">0</span>
 
+        <span class="hljs-keyword">while</span>(i &lt; l) {
+            <span class="hljs-built_in">var</span> h = Math.<span class="hljs-built_in">min</span>(<span class="hljs-built_in">height</span>[i],<span class="hljs-built_in">height</span>[l])
+            res = Math.<span class="hljs-built_in">max</span>(res, (l-i) * h)
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">height</span>[i] &lt; <span class="hljs-built_in">height</span>[l]) {
+                <span class="hljs-keyword">while</span>(<span class="hljs-built_in">height</span>[i] &lt;= h &amp;&amp; i &lt; l){i++}
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">while</span>(h &gt;= <span class="hljs-built_in">height</span>[l] &amp;&amp; i &lt; l){l--}
+            }
+        }
+        <span class="hljs-built_in">return</span> res
+    }
+</code></pre>
+<h4 id="hazyzh-h4-3">Regular Expression Matching</h4>
                     <div id="comment" class="comment"></div>
                 </article>
                 <aside class="blog-aside" id="asideContent">
