@@ -223,8 +223,9 @@
     }
 </code></pre>
 <h4 id="hazyzh-h4-4">Is Circular</h4><p>看到一个面试题，JSON.stringify 是 <code>javascrpit</code> 的一个方法返回一个json格式的字符串，效果如下</p>
-<pre><code class="lang-javascrpit">    const obj = {<span class="hljs-selector-tag">a</span>:<span class="hljs-number">1</span>, <span class="hljs-selector-tag">b</span>:<span class="hljs-number">2</span>}
-   JSON.stringify(obj) <span class="hljs-comment">// =&gt; '{"a":1,"b":2}'</span>
+<pre><code class="lang-javascrpit">
+    const obj = {<span class="hljs-selector-tag">a</span>:<span class="hljs-number">1</span>, <span class="hljs-selector-tag">b</span>:<span class="hljs-number">2</span>}
+    JSON.stringify(obj) <span class="hljs-comment">// =&gt; '{"a":1,"b":2}'</span>
 </code></pre>
 <p>当要转化的对象有“环”存在时（子节点属性赋值了父节点的引用），为了避免死循环，JSON.stringify 会抛出异常，例如：</p>
 <pre><code class="lang-javascript">    <span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">a</span> = [<span class="hljs-number">1</span>]
