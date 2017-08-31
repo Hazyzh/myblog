@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv=Content-Type content="text/html;charset=utf-8">
-        <meta name="keywords" contect="">
+        <meta name="keywords" contect="node博客系统，个人博客">
         <meta name="author" contect="hazyzh">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>构建自己的博客</title>
@@ -150,7 +150,7 @@
             <h1>构建自己的博客</h1>
             <span class="info-title clearleft">
                 
-                    <span class="tags"></span>
+                    <span class="tags">个人博客</span>
                 
                 <span class="time">2017年08月31日 12:32:44</span>
                 <span class="count-total" id="countNumbers"></span>
