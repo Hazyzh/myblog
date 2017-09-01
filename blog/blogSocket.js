@@ -54,6 +54,7 @@ function startSocketServer(server) {
         let urlinfo = client.request.headers.referer,
             roomId = url.parse(urlinfo).pathname,
             userName = ''
+            cosnole.log('socket:', urlinfo, roomId)
 
         var ipurl = 'http://restapi.amap.com/v3/ip'
         var key = 'e38506ecc1e237f3a242b11fef36a18e'
@@ -67,7 +68,7 @@ function startSocketServer(server) {
             url: ipurl,
             params: parameters
         }).then(data=>{
-            let city = data.data.city
+            let city = data.data.city || ''
             userName = city.substring(0, 2) + '-' + nameArr[Math.floor(Math.random()*1419)]
             client.emit('hi', userName)
         })
