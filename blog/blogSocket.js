@@ -49,12 +49,15 @@ function startSocketServer(server) {
     var roomsdata = {}
 // socket
     nsp.on('connection',function(client) {
-        var address = client.handshake.address
+	// var address = client.handshake.address
+        // use this because nginx proxy_pass ip 
+	var address = client.handshake.headers['x-real-ip']
 
         let urlinfo = client.request.headers.referer,
             roomId = url.parse(urlinfo).pathname,
             userName = ''
-            console.log('socket:', urlinfo, roomId)
+            // console.log('socket:', address, urlinfo, roomId)
+	    // console.log(client.handshake)	 
 
         var ipurl = 'http://restapi.amap.com/v3/ip'
         var key = 'e38506ecc1e237f3a242b11fef36a18e'
@@ -68,7 +71,10 @@ function startSocketServer(server) {
             url: ipurl,
             params: parameters
         }).then(data=>{
+	    // console.log(data.data)
             let city = data.data.city || ''
+	    if(typeof city == 'object') city = ''
+
             userName = city.substring(0, 2) + '-' + nameArr[Math.floor(Math.random()*1419)]
             client.emit('hi', userName)
         })
