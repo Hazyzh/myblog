@@ -54,7 +54,7 @@ function startSocketServer(server) {
         let urlinfo = client.request.headers.referer,
             roomId = url.parse(urlinfo).pathname,
             userName = ''
-            cosnole.log('socket:', urlinfo, roomId)
+            console.log('socket:', urlinfo, roomId)
 
         var ipurl = 'http://restapi.amap.com/v3/ip'
         var key = 'e38506ecc1e237f3a242b11fef36a18e'
