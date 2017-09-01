@@ -158,11 +158,11 @@
             <span class="line"></span>
             <div class="blog-container clearleft">
                 <article class="blog-content">
-                    <h3 id="hazyzh-h3-1">前言</h3><p><img src="//oqqyvkd0p.bkt.clouddn.com/imgs/bg.jpg" alt="hazy"></p>
+                    <h3 id="hazyzh-h3-1">前言</h3><p><img src="//hazyzh.oss-cn-shenzhen.aliyuncs.com/imgs/bg.jpg" alt="hazy"></p>
 <p> 记得没错的话应该是05月19日入职，不知不觉已经三个月了。<em>【失控】</em> 这个名字听起来还是有点奇怪的，当初培训完聚会时候收到这个面试短信，还在和其他同学嘲笑这个名字，没想到自己进来工作了。</p>
 <p> 感觉能进入这个公司还是挺幸运的，起初以为是外包公司挺苦恼的，毕竟传闻中外包公司名声都不怎么样。后面进来后意外的发现公司虽然规模不大，不过做事风格和技术栈都和我想要的非常符合。对比其他同学都工作，感觉自己真是挺幸运的。</p>
 <p> 还记得刚进去时候让写 <strong>Okrs</strong> 我还给自己定了很多规划目标，时间慢慢过去，我自己都忘记自己当初的目标了，以致于之前还想去墙上照个相片保留，没想那地方到已经换成 <strong>logo</strong> 了，感觉自己最近一段时间有点迷茫，想学的东西有点杂，想做的事情也有点多，导致自己有时候静下来反而没头绪不知道应该做什么了。</p>
-<h3 id="hazyzh-h3-2">期望的技术栈</h3><p><img src="//oqqyvkd0p.bkt.clouddn.com/ef0aa930fee923d34df5a395c65dbbe9.jpg" alt="框架"></p>
+<h3 id="hazyzh-h3-2">期望的技术栈</h3><p><img src="//hazyzh.oss-cn-shenzhen.aliyuncs.com/imgs/ef0aa930fee923d34df5a395c65dbbe9.jpg" alt="框架"></p>
 <p> 自己的知识会很大程度改变对物体的认知，记得没工作前在自学 <strong>vue</strong> ,自己坚定的认为这个是最好的框架，自己后面一定要把这个学好、吃透。融汇贯通后就可以横行天下了，给自己定目标要在一两个月内学会核心知识，现在发现我所谓的核心知识不过是框架知识体系的冰山一脚。幸运的是公司是用<strong>react</strong> 的，这让我有机会了解到另一个流行框架，不再局限于一种思维方式，可以跳出框架本身，去了解框架整个的技术体系，整套的技术栈。<em>react</em> 没有给提供官方的脚手架，这一度让我更加苦恼，但是现在看来，自己去搭建脚手架工具的过程是可以带来质的改变的。这是可以让你真正的去了解整套框架的技术栈，让你真正的能去使用它。</p>
 <p> 之前期望的技术栈已经忘了很多了，索性现阶段思考下自己的预期</p>
 <h5>前端</h5><pre><code>-<span class="ruby"> es6

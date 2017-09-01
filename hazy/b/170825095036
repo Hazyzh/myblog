@@ -160,7 +160,7 @@
             <span class="line"></span>
             <div class="blog-container clearleft">
                 <article class="blog-content">
-                    <h3 id="hazyzh-h3-1">前言</h3><p><img src="//oqqyvkd0p.bkt.clouddn.com/WechatIMG25.jpeg" alt="探索"></p>
+                    <h3 id="hazyzh-h3-1">前言</h3><p><img src="//hazyzh.oss-cn-shenzhen.aliyuncs.com/imgs/WechatIMG25.jpeg" alt="探索"></p>
 <p>无意间发现 <a href="https://leetcode.com/"><strong>LeetCode</strong></a> 这个网站，一下子就陷进去了，大学时候看舍友参加 <em>acm</em> 一天到晚刷题，对算法总有点特殊的情怀。本以为我永远是接触不到这个了，没想到 leetcode 却让我感觉到 <em>Accepted</em> 这个单词的特殊魅力。</p>
 <h3 id="hazyzh-h3-2">个人</h3><p>首先自己并不是为了找工作去刷题的，纯粹享受做题的过程和ac的快感。题目全部用 <code>JavaScript</code> 做的，基本上每天一题的节奏。开始总是想着怎么把答案解出来就好，经常 <em>TLE</em> ,感觉一路做下来自己慢慢会考虑复杂度，逻辑严谨性也在逐步加强，对特殊值的考虑越来越多，相比于算法能力的提升我更欣喜看到自己逻辑严谨性加强，感觉这对自己后面的道路帮助会很大。</p>
 <h3 id="hazyzh-h3-3">题目</h3><p>这里记录自己对一些题目的思路和想法</p>
