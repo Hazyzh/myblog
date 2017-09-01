@@ -134,7 +134,7 @@ app.get('/get_lastest_blog', blogHomepage.getLastest)
 app.get('/get_tags_info', blogHomepage.getTagsinfo)
 
 
-var server = app.listen(80, function(){
+var server = app.listen(8080, function(){
     var info = server.address()
     var host = info.address
     var port = info.port
