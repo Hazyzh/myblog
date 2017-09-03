@@ -6,6 +6,7 @@
         <meta name="author" contect="hazyzh">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>写点什么</title>
+        <meta name="description" content="前言 期望的技术栈 关于技术栈 es6 函数式编程 组件化开发、less Express、Koa socketIo、nginx mongodb、mysql、redis linux、ecs 杂言 ">
         <link rel="shortcut icon" href="/favicon.ico"  type="image/x-icon">
         <style>
             *{

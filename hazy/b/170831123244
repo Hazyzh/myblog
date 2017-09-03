@@ -6,6 +6,7 @@
         <meta name="author" contect="hazyzh">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>构建自己的博客</title>
+        <meta name="description" content="前言 博客想法 思路 技术选型 ">
         <link rel="shortcut icon" href="/favicon.ico"  type="image/x-icon">
         <style>
             *{

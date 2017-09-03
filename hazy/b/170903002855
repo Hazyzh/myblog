@@ -6,6 +6,7 @@
         <meta name="author" contect="hazyzh">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>我的全站https之路</title>
+        <meta name="description" content="背景 目的 流程 ssl证书 服务器(centos)下载 nginx 配置ssl证书 全站https 反向代理到真正的服务 第三方服务和一些问题 参考资料 ">
         <link rel="shortcut icon" href="/favicon.ico"  type="image/x-icon">
         <style>
             *{
@@ -172,17 +173,17 @@
 <p>自己的站点比较简单，目前就想着这样子做，因为后面可能在这个站点上实验些其他的东西，有可能会用到 <a href="https://www.docker.com/">docker</a>,选择了用 <code>nginx</code> 来处理请求。</p>
 <h4 id="hazyzh-h4-1">ssl证书</h4><p> sll证书用的阿里云的 <a href="https://common-buy.aliyun.com/?spm=5176.2020520163.cas.1.4272e7a9332SOK&amp;commodityCode=cas#/buy">云盾证书</a>, 因为自己服务器就在阿里云，当然最大的原因还是免费。操作还是简单的，进去一通乱点找到免费的那个购买就行了。</p>
 <h4 id="hazyzh-h4-2">服务器(centos)下载 nginx</h4><p> 1.编译环境,已经安装的可以忽视</p>
-<pre><code class="lang-linux">     <span class="hljs-comment">// 安装make:</span>
-     yum -y install gcc automake autoconf libtool <span class="hljs-built_in">make</span>
-     <span class="hljs-comment">// 安装g++</span>
-     yum install gcc gcc-c++
+<pre><code class="lang-linux">     <span class="hljs-comment"># 安装make:</span>
+     yum -y <span class="hljs-keyword">install</span> gcc automake autoconf libtool make
+     <span class="hljs-comment"># 安装g++</span>
+     yum <span class="hljs-keyword">install</span> gcc gcc-c++
 </code></pre>
 <p> 2.选择安装目录，我选择安装在 <code>/usr/local/src</code> 下</p>
 <pre><code class="lang-linux">    <span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/src
 </code></pre>
 <p> 3.安装 <code>pcre</code>, <code>zlib</code>, 前者为了重写rewrite，后者为了gzip压缩。</p>
 <pre><code> 注意下面wget的地址，可能你下载时候这个版本会没有资源，你可以直接访问那个地址进去看看最新的资源版本号是多少，个人意见如果你和我一样之前的版本都没有用过的话，有最新稳定版的就用最新的，这个后面会提到。
-</code></pre><pre><code class="lang-linux">     <span class="hljs-string">//</span> 安装 pcre 
+</code></pre><pre><code class="lang-linux">     <span class="hljs-comment"># 安装 pcre </span>
     <span class="hljs-keyword">cd</span> <span class="hljs-string">/usr/local/src</span>
     wget ftp:<span class="hljs-string">//ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.tar.gz</span> 
     tar -zxvf pcre-8.40.tar.gz
@@ -191,7 +192,7 @@
     make
     make install
 
-    <span class="hljs-string">//</span> 安装 zlib
+    <span class="hljs-comment"># 安装 zlib</span>
     wget https:<span class="hljs-string">//zlib.net/zlib-1.2.11.tar.gz</span>
     tar -zxvf zlib-1.2.11.tar.gz
     <span class="hljs-keyword">cd</span> zlib-1.2.11
@@ -211,7 +212,7 @@
      wget https://nginx.org/download/nginx-1.13.0.tar.gz
     tar -zxvf nginx-1.13.0.tar.gz
     cd nginx-1.13.0
-<span class="hljs-comment">    //下面是把 Nginx 安装到 /usr/local/nginx 目录下，注意后面跟的是刚才安装的pcre、zlib和ssl的源码地址，根据自己安装的调整</span>
+    # 下面是把 Nginx 安装到 /usr/local/nginx 目录下，注意后面跟的是刚才安装的pcre、zlib和ssl的源码地址，根据自己安装的调整
 
     ./configure --sbin-path=/usr/local/nginx/nginx \
     -<span class="ruby">-conf-path=<span class="hljs-regexp">/usr/local</span><span class="hljs-regexp">/nginx/nginx</span>.conf \
@@ -227,33 +228,33 @@
 <p> 6.启动</p>
 <p> 确保80端口没有被占用，我之前node是在监听80端口的，现在把服务先停止。</p>
 <pre><code class="lang-linux">
-     <span class="hljs-comment">//查看端口情况</span>
-    netstat -ano|<span class="hljs-keyword">grep</span> <span class="hljs-number">80</span>
-    <span class="hljs-comment">//启动nginx</span>
+     <span class="hljs-comment"># 查看端口情况</span>
+    netstat -ano|grep <span class="hljs-number">80</span>
+    <span class="hljs-comment"># 启动nginx</span>
     sudo <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/nginx/</span>nginx
 </code></pre>
 <p> 启动后再重新打开你的站点，看到 <code>Welcome to nginx!</code> 界面就安装好了。</p>
 <h4 id="hazyzh-h4-3">配置ssl证书</h4><p> 一般网上申请好证书，下载时候都会给你些配置提示，我这个阿里云的证书，下载时候就根据不同配置给了详细的答案。把证书下载下来，放到nginx文件中，我这里放在了一个新建的 <code>cert</code>文件夹中,然后配置nginx文件下的 <code>nginx.conf</code>开启 <code>https</code> .</p>
 <pre><code class="lang-linux">
-    <span class="hljs-comment">// 配置前先备份总没有错</span>
-    cp nginx.conf nginx.conf.back
+    <span class="hljs-comment"># 配置前先备份总没有错</span>
+    <span class="hljs-attribute">cp</span> nginx.conf nginx.conf.back
 
-    <span class="hljs-comment">// 进入配置文件后找到下面https的配置，有个 `# HTTPS server`的注释  </span>
+    <span class="hljs-comment"># 进入配置文件后找到下面https的配置，有个 `# HTTPS server`的注释  </span>
     server {
-        listen <span class="hljs-number">443</span>;
-        server_name 你的证书站点；
-        ssl on;
-        root html;
-        index index.html index.htm;
-        ssl_certificate   cert/你的证书;
-        ssl_certificate_key  cert/你的key;
-        ssl_session_timeout <span class="hljs-number">5</span>m;
-        ssl_ciphers ECDHE-RSA-AES128-GCM-<span class="hljs-string">SHA256:</span><span class="hljs-string">ECDHE:</span><span class="hljs-string">ECDH:</span><span class="hljs-string">AES:</span><span class="hljs-string">HIGH:</span>!<span class="hljs-string">NULL:</span>!<span class="hljs-string">aNULL:</span>!<span class="hljs-string">MD5:</span>!<span class="hljs-string">ADH:</span>!RC4;
-        ssl_protocols TLSv1 TLSv1<span class="hljs-number">.1</span> TLSv1<span class="hljs-number">.2</span>;
-        ssl_prefer_server_ciphers on;
-        location / {
-            root html;
-            index index.html index.htm;
+        <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span>;
+        <span class="hljs-attribute">server_name</span> 你的证书站点；
+        ssl <span class="hljs-literal">on</span>;
+        <span class="hljs-attribute">root</span> html;
+        <span class="hljs-attribute">index</span> index.html index.htm;
+        <span class="hljs-attribute">ssl_certificate</span>   cert/你的证书;
+        <span class="hljs-attribute">ssl_certificate_key</span>  cert/你的key;
+        <span class="hljs-attribute">ssl_session_timeout</span> <span class="hljs-number">5m</span>;
+        <span class="hljs-attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+        <span class="hljs-attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>;
+        <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;
+        <span class="hljs-attribute">location</span> / {
+            <span class="hljs-attribute">root</span> html;
+            <span class="hljs-attribute">index</span> index.html index.htm;
         }
     }
 </code></pre>
