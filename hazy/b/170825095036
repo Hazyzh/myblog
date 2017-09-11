@@ -6,7 +6,7 @@
         <meta name="author" contect="hazyzh">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>leetcode记录</title>
-        <meta name="description" content="前言 个人 题目 Palindrome Number Container With Most Water Regular Expression Matching Is Circular ">
+        <meta name="description" content="前言 个人 题目 Palindrome Number Container With Most Water Regular Expression Matching Is Circular Submission Details ">
         <link rel="shortcut icon" href="/favicon.ico"  type="image/x-icon">
         <style>
             *{
@@ -133,6 +133,7 @@
         <link rel="stylesheet" href="/styles/ocean.css">
         <link href="https://cdn.bootcss.com/antd/2.12.2/antd.min.css" rel="stylesheet">
         <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/bundle.css">
     </head>
     <body>
         <header>
@@ -255,6 +256,39 @@
         <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(o)</span></span>
         <span class="hljs-keyword">return</span> flag
     }
+</code></pre>
+<h4 id="hazyzh-h4-5">Submission Details</h4><p><code>给一个数字，写一个函数根据数字生成所有形式良好的括号组合
+    2 =&gt; [&quot;()()&quot;, &quot;(())&quot;]
+    3 =&gt; 
+        [
+          &quot;((()))&quot;,
+          &quot;(()())&quot;,
+          &quot;(())()&quot;,
+          &quot;()(())&quot;,
+          &quot;()()()&quot;
+        ]</code></p>
+<p>想了一下有一个思路，就是根据 <code>()</code> 里面的包含几个子 <code>()</code> 来得出所有情况。 比如给出的数字是5, 那么循环到5，第n 就有 <code>( [func(n)的结果] )</code> * <code>func(4-n)的结果</code> 。</p>
+<p>一直想着以一个优雅的方式处理边界的问题，但是想半天都没结果，只能写的丑陋点了。</p>
+<pre><code class="lang-javascript">    <span class="hljs-keyword">var</span> generateParenthesis = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> []
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> [<span class="hljs-string">'()'</span>]
+        <span class="hljs-keyword">let</span> arr = []
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            <span class="hljs-keyword">if</span>( i == <span class="hljs-number">0</span>) {
+                arr = arr.concat(generateParenthesis([n<span class="hljs-number">-1</span>]).map(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-string">'()'</span> + d ))
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i == n<span class="hljs-number">-1</span>){
+                arr = arr.concat(generateParenthesis([n<span class="hljs-number">-1</span>]).map(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-string">'('</span> + d + <span class="hljs-string">')'</span>))
+            } <span class="hljs-keyword">else</span> {
+                generateParenthesis(i).forEach(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> {
+                    <span class="hljs-keyword">let</span> eachres = <span class="hljs-string">'('</span> + d +<span class="hljs-string">')'</span>
+                    generateParenthesis(n- i <span class="hljs-number">-1</span>).forEach(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> {
+                        arr.push(eachres + c)
+                    })
+                })
+            }
+        }
+        <span class="hljs-keyword">return</span> arr
+    };
 </code></pre>
 
                     <div id="comment" class="comment"></div>

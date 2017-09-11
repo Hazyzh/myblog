@@ -133,6 +133,7 @@
         <link rel="stylesheet" href="/styles/ocean.css">
         <link href="https://cdn.bootcss.com/antd/2.12.2/antd.min.css" rel="stylesheet">
         <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/bundle.css">
     </head>
     <body>
         <header>
