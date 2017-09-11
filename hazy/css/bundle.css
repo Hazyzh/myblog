@@ -1,222 +1,208 @@
 /*! Copyright Hazyzh All rights reserved. */
-/*! Copyright Hazyzh All rights reserved. */
-body {
-  font: 17px/1.5 "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-  background: #fff;
+h1,
+h3,
+h4 {
+  margin: 20px 0px;
 }
-.line {
-  display: block;
-  width: 95%;
-  margin: auto;
-  border-bottom: 1px dashed #ccc;
+p {
+  margin: 10px 0px;
 }
-.header-box {
-  height: 70px;
-  line-height: 70px;
-  overflow: hidden;
-  background: #fafafa;
-  -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1);
-}
-.header-box .header-container {
-  width: 1200px;
-  margin: auto;
-}
-.header-box .header-container .logo {
-  float: left;
-  line-height: 70px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  -webkit-box-shadow: 1px 1px 1px #171411;
-          box-shadow: 1px 1px 1px #171411;
-  margin-top: 10px;
-}
-.header-box .header-container .logo img {
-  width: 100;
-  height: 100%;
-}
-.header-box .header-container .left-menu {
-  float: right;
-}
-.header-box .header-container .left-menu a {
-  color: #999;
-  text-decoration: none;
-  margin-right: 20px;
-}
-.header-box .header-container .left-menu a:hover {
-  color: #71afae;
-}
-.main-content {
-  width: 1200px;
-  margin: 30px auto 10px;
-}
-.lastest-blog {
-  font-family: Georgia, serif;
-  border-radius: 15px;
-}
-.lastest-blog .ant-card-body {
-  padding: 0px;
-}
-.lastest-blog .lastest-title {
-  height: 60px;
-  overflow: hidden;
-}
-.lastest-blog .lastest-title .tag-content {
-  color: #fff;
-  display: inline-block;
-  font-size: 14px;
-  float: left;
-  padding: 0px 30px;
-  background: #71afae;
-  line-height: 60px;
-  height: 60px;
-}
-.lastest-blog .lastest-title .tag-content i {
-  margin-right: 10px;
-}
-.lastest-blog .lastest-title .read-count {
-  line-height: 60px;
-  text-align: right;
-  padding-right: 30px;
-}
-.lastest-blog .lastest-title .tag-after {
-  float: left;
-  width: 0;
-  height: 0;
-  border-top: 0 solid transparent;
-  border-bottom: 30px solid transparent;
-  border-left: 60px solid #71afae;
-  -webkit-transform: rotate(-90deg);
-      -ms-transform: rotate(-90deg);
-          transform: rotate(-90deg);
-  margin-top: 15px;
-  margin-left: -16px;
-}
-.lastest-blog .lastest-title .read-title {
-  line-height: 60px;
-  text-align: right;
-  padding-right: 30px;
-  color: #999;
-}
-.lastest-blog .blog-content {
-  padding: 20px 40px;
-}
-.lastest-blog .blog-content h3 {
-  font-size: 35px;
-}
-.lastest-blog .blog-content .time {
-  color: #9d9d9d;
-}
-.lastest-blog .blog-content .time i {
-  margin-right: 10px;
-}
-.lastest-blog .blog-content .content {
-  height: 100px;
-  overflow: hidden;
-}
-.lastest-blog .blog-content .content .box {
-  margin-top: 20px;
-  margin-left: 20px;
-}
-.lastest-blog .blog-content .content .box li:before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  background-color: #71afae;
-  position: absolute;
-  margin-left: -10px;
-  margin-top: 5px;
-  border-radius: 50%;
-}
-.lastest-blog .blog-content .content .box li span {
-  padding-left: 15px;
-}
-.lastest-blog .blog-content .blog-addr {
-  margin-left: 50px;
-  font-size: 20px;
-  text-align: right;
-  margin-top: 10px;
-}
-.lastest-blog .blog-content .blog-addr a {
-  color: #999;
-}
-.lastest-blog .blog-content .blog-addr a:hover {
-  color: #71afae;
-}
-.lastest-blog .blog-content .blog-addr i {
-  margin-left: 15px;
-}
-.blogs {
-  margin-top: 20px;
-}
-.blogs h3 {
-  font-family: Georgia, serif;
-  margin-bottom: 20px;
-  padding: 0px 30px;
-}
-.blogs h3 a {
-  float: right;
-}
-.blogs .content ul {
-  padding: 20px 30px;
-}
-.blogs .content ul li {
-  margin-top: 10px;
-  font-family: Georgia, serif;
-}
-.blogs .content ul li:before {
-  content: '';
-  width: 10px;
-  height: 10px;
-  border: 1px groove #71afae;
-  -webkit-box-shadow: 1px 1px 0px #eee;
-          box-shadow: 1px 1px 0px #eee;
-  position: absolute;
-  margin-left: -10px;
-  margin-top: 8px;
-  border-radius: 50%;
-}
-.blogs .content ul li .time {
-  color: #999;
-  padding: 0px 10px;
-}
-.blogs .content ul li .title {
-  letter-spacing: 2px;
-  color: #4a75b5;
-}
-.blogs .content ul li .title:hover {
-  color: #e58c7c;
-}
-.blogs .content ul li .last-title {
-  margin-left: 10px;
-}
-.blogs .content ul li .ant-tag {
-  margin: 0px 10px;
-}
-.aside {
-  font-family: Georgia, serif;
-}
-.aside h3 {
-  margin: 20px;
-  font-size: 20px;
-}
-.aside .tags-box {
-  margin: 10px 20px;
-}
-.aside .tags-box .ant-tag {
-  margin-bottom: 8px!important;
-}
-.aside span {
+pre {
   padding: 10px;
 }
-.footer-box {
-  background: #fafafa;
-  border-top: 1px solid #fff;
+.aside-box {
+  padding: 50px;
 }
-.footer-box .footer-container {
-  text-align: center;
-  color: #b0b0b0;
+.aside-box .chat-box {
+  margin-top: 10px;
+}
+.aside-box p {
+  text-indent: 0px !important;
+  font-weight: 500;
+}
+.aside-box .ant-card-bordered {
+  border: none;
+}
+#content img {
+  width: 100%;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 2px #eee;
+          box-shadow: 0px 0px 2px #eee;
+}
+#content pre {
+  background: url('https://static.segmentfault.com/v-5976f73d/global/img/blueprint.png') #F6F6F6;
+  padding: 20px;
+  margin: 10px 0px;
+  font-size: 16px;
+  overflow: auto;
   font-weight: 300;
+  text-shadow: 0 1px white;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+}
+#content p {
+  font-size: 14px;
+  line-height: 1.6em;
+  text-indent: 2em;
+}
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+  color: #00a2ae;
+  margin: 1.6em 0;
+}
+#content h2:before,
+#content h3:before,
+#content h4:before,
+#content h5:before,
+#content h6:before {
+  content: " ";
+  display: inline-block;
+  vertical-align: bottom;
+  width: 5px;
+  height: 2em;
+  background: #a7dfe3;
+  margin-right: 20px;
+}
+#content ul,
+#content li {
+  list-style: circle;
+}
+#content ul {
+  margin-left: 2em;
+}
+.talk-container {
+  height: 300px;
+  overflow-y: auto;
+  padding-left: 10px;
+}
+.talk-container .my-talk {
+  text-align: right;
+}
+.talk-container .my-talk .time {
+  margin-right: 10px;
+}
+.talk-container .my-talk p {
+  margin-right: 2em;
+}
+.talk-container p {
+  margin: 0px 20px 3px 20px;
+  text-indent: 0px !important;
+  padding: 0px;
+  font-weight: 300;
+  color: #919191;
+  letter-spacing: 0;
+}
+.talk-container .name {
+  font-size: 14px;
+  font-weight: bold;
+}
+.talk-container .time {
+  color: #bfbfbf;
+  font-size: 12px;
+}
+.people-number {
+  text-align: right;
+  margin-right: 30px;
+  color: #eee;
+  font-size: 12px;
+  margin-top: -30px;
+}
+.people-number span {
+  color: #a7dfe3;
+}
+.comment-box {
+  margin-top: 20px;
+  background: #f5f5f5;
+  padding: 5px 10px;
+  border: 1px solid #eee;
+  margin-bottom: 100px;
+}
+.comment-box .title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.comment-box .out-put {
+  border-radius: 5px;
+  background: #fff;
+  height: 150px;
+  overflow-y: auto;
+}
+#content .login-type {
+  line-height: 30px;
+}
+#content .login-type img {
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  vertical-align: bottom;
+}
+#content .login-type a {
+  position: relative;
+  z-index: 100;
+  display: inline-block;
+}
+#content .comment-content {
+  background: #fff;
+  margin-top: 20px;
+  padding: 10px;
+}
+#content .comment-content img {
+  padding: 0px;
+}
+#content .comment-content .info {
+  margin-top: 20px;
+}
+#content .comment-content .info .inner-comment {
+  cursor: pointer;
+  padding-left: 40px;
+  color: #76cdd3;
+  letter-spacing: 2px;
+}
+#content .comment-content .info .inner-delete {
+  cursor: pointer;
+  padding-left: 10px;
+  color: #f46e65;
+  letter-spacing: 2px;
+}
+#content .comment-content .time {
+  display: block;
+  color: #d9d9d9;
+}
+#content .userComment {
+  background: #f7f7f7;
+}
+#content .userComment .content {
+  margin-right: 20px;
+}
+#content .userComment .info-one {
+  background: #fff;
+  border-bottom: 1px solid #fff;
+  line-height: 40px;
+  border-radius: 5px;
+  padding-left: 15px;
+  margin-top: 8px;
+}
+#content .userComment .time {
+  margin-left: 20px;
+  font-size: 12px;
+  color: #d9d9d9;
+}
+#content .userComment .inner-delete {
+  cursor: pointer;
+  padding-left: 10px;
+  color: #f46e65;
+  letter-spacing: 2px;
+}
+#content .user-form {
+  margin-top: 30px;
+}
+#content .user-form .btn {
+  text-align: center;
 }
