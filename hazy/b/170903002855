@@ -73,6 +73,10 @@
             #content img{
                 width: 100%;
             }
+            #content li{
+                list-style: circle;
+                margin-left: 20px;
+            }
 
             pre{
                 background: #eee;
