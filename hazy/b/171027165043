@@ -6,7 +6,7 @@
         <meta name="author" contect="hazyzh">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>动手实现redux</title>
-        <meta name="description" content="前言 实例回顾 redux 属性分析 实现 createStore 实现 reducer 实现 Provider 实现connect 参考 ">
+        <meta name="description" content="前言 实例回顾 redux 属性分析 动手实现 实现 createStore 实现 reducer 实现 Provider 实现connect 参考 ">
         <link rel="shortcut icon" href="/favicon.ico"  type="image/x-icon">
         <style>
             *{
@@ -189,7 +189,7 @@
 </code></pre>
 <p>用过 <code>mapStateToProps</code> 从顶层拿到属性然后展示, 在另一个组建通过 <code>mapDispatchToProps</code> 去触发 <code>action</code> 改变 <code>state</code>, 那么我们如何自己实现 <code>redux</code> 的功能呢</p>
 <h3 id="hazyzh-h3-3">redux 属性分析</h3><p>关于我们常用到的内容, 首先我们要考虑 <code>createStore</code> 方法, 使得可以创建出来我们后面要用到的 <code>store</code> , 可以接受 <code>action</code> 去处理改变 <code>state</code>, 并且去触发其他事件，比如组建渲染。 <code>Provider</code> 组建，可以传入一个 <code>store</code> 向下分发我们的 <code>store</code>,使得子组建可以获取到我们 <code>store</code> 内的属性和方法。一个 <code>connect</code> 方法，使得子组建可以获取到 <code>store</code> 里面的内容, 并根据 <code>state</code> 改变及时刷新渲染。</p>
-<h3 id="hazyzh-h3-4">实现 createStore</h3><pre><code class="lang-javascript">
+<h3 id="hazyzh-h3-4">动手实现</h3><h4 id="hazyzh-h4-1">实现 createStore</h4><pre><code class="lang-javascript">
     <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> reducer =&gt; {
         <span class="hljs-keyword">let</span> state = <span class="hljs-literal">null</span>
         <span class="hljs-keyword">let</span> listeners = []
@@ -214,7 +214,7 @@
     }
 </code></pre>
 <p>这个模块直接 <code>export</code> 创建 <code>store</code> 的函数,考虑到要暴露出去的三个函数, 我们用函数内部的变量 <code>state</code> 来存储我们的数据, <code>getState</code> 时候直接返回当前的值就可以了, 同样用内部变量 <code>listeners</code> 来存储订阅者, 订阅者则由 <code>dispatch</code> 函数添加, 返回取消订阅的函数。 <code>dispatch</code> 则根据 <code>action</code> 返回新的 <code>state</code> 同时通知订阅者执行相关逻辑。最后返回包含这三个函数的对象。改对象接受 <code>reducer</code> 作为参数, 内部执行一次 <code>dispatch</code> 则是为了初始化 <code>state</code></p>
-<h3 id="hazyzh-h3-5">实现 reducer</h3><pre><code class="lang-javascript">
+<h4 id="hazyzh-h4-2">实现 reducer</h4><pre><code class="lang-javascript">
     const initState = {
         <span class="hljs-built_in">..</span>.
     }
@@ -229,7 +229,7 @@
     }
 </code></pre>
 <p>关于 <code>reducer</code> 则简单的实现了根据不同的 <code>action</code>, 返回不同的 <code>state</code>, 只是刚开始判断了如果没有 <code>state</code>, 即初始化时候返回设置好的初始化值。</p>
-<h3 id="hazyzh-h3-6">实现 Provider</h3><pre><code class="lang-javascrpit">
+<h4 id="hazyzh-h4-3">实现 Provider</h4><pre><code class="lang-javascrpit">
     <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Provider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
         getChildContext () {
             <span class="hljs-keyword">return</span> {
@@ -241,7 +241,7 @@
     }
 </code></pre>
 <p>这里必须提一下 <code>react</code> 的 <code>context</code> 这个属性, 可以让我们不通过 <code>props</code> 去获取到上层组建的属性, 不过关于写法却有一些特殊的规定而且在后面的版本可能被移除, 具体信息可以参考<a href="https://reactjs.org/docs/context.html">Context</a>. 我们用 <code>context</code> 把创建的 <code>store</code> 存入顶层组建中, 这样就可以在后序组建中去获取到相关内容了。</p>
-<h3 id="hazyzh-h3-7">实现connect</h3><pre><code class="lang-javascript">
+<h4 id="hazyzh-h4-4">实现connect</h4><pre><code class="lang-javascript">
     <span class="hljs-keyword">const</span> connect = <span class="hljs-function">(<span class="hljs-params">mapStateToProps, mapDispatchToProps</span>) =&gt;</span> (WrappedComponent) =&gt; {
         <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InnerComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>{
             <span class="hljs-keyword">constructor</span> (props, context) {
@@ -286,7 +286,7 @@
  添加订阅者每次更新 <code>state</code> 时候则重新渲染当前组件。</p>
 <p> <img src="https://hazyzh.oss-cn-shenzhen.aliyuncs.com/imgs/height-order-component.png" alt="height-order-component."></p>
 <p>至此我们的简易得逻辑已经实现, 代码github上有【<a href="https://github.com/Hazyzh/reacts-ggsddu">reacts-ggsddu</a>】, 可以下载本地运行感受一下</p>
-<h3 id="hazyzh-h3-8">参考</h3><ul>
+<h3 id="hazyzh-h3-5">参考</h3><ul>
 <li><a href="http://huziketang.com/books/react/">React.js 小书</a></li>
 </ul>
 
