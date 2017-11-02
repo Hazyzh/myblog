@@ -77,7 +77,14 @@
                 list-style: circle;
                 margin-left: 20px;
             }
-
+			p code {
+				padding: 3px 4px;
+				font-size: 90%;
+				color: #c7254e;
+				background-color: #f9f2f4;
+				border-radius: 4px;
+				font-family: Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+			}
             pre{
                 background: #eee;
                 font-size: 17px;
