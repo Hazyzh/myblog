@@ -1,12 +1,12 @@
 var connection = require('../mysqlForServer.js'),
     moment = require('moment')
 
-const getResInfo = (code, content, message) => {
-    return {
+const getResInfo = (code, content, message, ...args) => {
+    return Object.assign({
         code,
         content,
         message
-    }
+    }, ...args)
 }
 
 const get_lastest_blog = (req, res) => {
