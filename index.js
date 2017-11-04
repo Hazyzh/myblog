@@ -132,7 +132,8 @@ app.delete('/blog_comment', blogComment.delete)
 app.get('/get_lastest_blog', blogHomepage.getLastest)
 // 博客标签
 app.get('/get_tags_info', blogHomepage.getTagsinfo)
-
+// tags 页获取数据
+app.get('/tags_blogs_list', blogHomepage.getTagsBlogsList)
 
 var server = app.listen(8080, function(){
     var info = server.address()
