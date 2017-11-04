@@ -249,3 +249,21 @@ body {
   font-size: 30px;
   margin-top: 30px;
 }
+.about-me .item-one {
+  -webkit-box-shadow: 1px 1px 1px #d0d0d0;
+          box-shadow: 1px 1px 1px #d0d0d0;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #6f6969;
+}
+.about-me .item {
+  margin: 20px 0;
+}
+.about-me p {
+  padding: 0 20px;
+  line-height: 2;
+}
+.about-me .end {
+  text-align: right;
+  color: #d0cece;
+}
