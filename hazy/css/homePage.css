@@ -219,3 +219,33 @@ body {
   color: #b0b0b0;
   font-weight: 300;
 }
+.tags-content {
+  min-height: 600px;
+}
+.tags-content .time {
+  color: #999;
+}
+.tags-content .time i {
+  margin-right: 15px;
+}
+.tags-content .blog-item-info {
+  line-height: 30px;
+  margin: 10px 0 10px 35px;
+}
+.tags-content .blog-item-info .title {
+  margin-right: 20px;
+}
+.tags-content .no-data {
+  text-align: center;
+}
+.tags-content .no-data .icon {
+  font-size: 50px;
+}
+.tags-content .no-data .tagss {
+  font-size: 20px;
+}
+.tags-content .no-data .tip {
+  color: #999;
+  font-size: 30px;
+  margin-top: 30px;
+}
