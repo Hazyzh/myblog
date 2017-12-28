@@ -27,7 +27,7 @@ const getInfo = (req, res) => {
                 client_secret: AppSecret,
                 grant_type: 'authorization_code',
                 code,
-                redirect_uri: 'http://www.hazyzh.com/oauth'
+                redirect_uri: 'https://www.hazyzh.com/oauth'
             }
         }).then(data=> {
             var { access_token, uid } = data.data
