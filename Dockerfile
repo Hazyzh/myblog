@@ -10,6 +10,6 @@ RUN npm i cnpm -g \
     && cnpm i \
     && cnpm i pm2 -g
 
-CMD ["pm2", "start", "index.js"]
+CMD ["pm2", "start", "index.js", "--no-daemon"]
 
 EXPOSE 8080
