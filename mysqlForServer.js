@@ -1,8 +1,8 @@
 var mysql = require('mysql')
 const config = {
-    host: 'rm-wz9q5gati5vm67726o.mysql.rds.aliyuncs.com',
+    host: 'rm-bp1mtn37322i8u9an.mysql.rds.aliyuncs.com',
     user: 'root',
-    password: 'Hou19910325',
+    password: 'a!^%asa$@HFs12#',
     database: 'hazyzh',
     port: 3306
 }
